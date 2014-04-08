@@ -4,7 +4,6 @@ import com.adds.domain.Ad;
 import com.adds.domain.Role;
 import com.adds.domain.User;
 import com.adds.repository.AdRepository;
-import com.adds.repository.CategoryRepository;
 import com.adds.repository.RoleRepository;
 import com.adds.repository.UserRepository;
 import com.adds.utils.PasswordUtil;
@@ -18,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Arrays;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -63,8 +63,7 @@ public class UserController {
 
     @RequestMapping(value = "/ad")
     public String ad(ModelMap model) {
-        User user = userRepository.findOne(1);
-
+        User user = userRepository.findOne(5);
         model.addAttribute("ads", new ArrayList<Ad>(user.getAds()));
 
         return "ad";

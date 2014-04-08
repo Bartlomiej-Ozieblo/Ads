@@ -22,7 +22,7 @@ public class Ad implements Serializable {
     private String text;
 
     @Column(name = "ad_date")
-//    @Type(type = "datetime")
+//    @Type(type = "timestamp")
     private Date createDate;
 
     @OneToOne

@@ -27,9 +27,11 @@ public class User implements Serializable {
     @JoinColumn(name = "contact")
     private Contact contact;
 
-    @OneToMany(targetEntity = Ad.class)
-    @JoinColumn(name = "ad_id")
-    private Set<Ad> ads = new HashSet<Ad>();
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_ads",
+    joinColumns = {@JoinColumn(name = "user", referencedColumnName = "user_id")},
+    inverseJoinColumns = {@JoinColumn(name = "ad", referencedColumnName = "ad_id")})
+    private Set<Ad> ads;
 
     public Integer getUserId() {
         return userId;

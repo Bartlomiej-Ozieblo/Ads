@@ -6,25 +6,24 @@
 </head>
 <body>
 <table>
-    <c:forEach items="${ads}" var="ad">
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Text</th>
-            <th>Data</th>
-            <th>Category</th>
-            <th>&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
+    <c:if test="${!empty ads}">
+        <c:forEach items="${ads}" var="ad">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Text</th>
+                <th>Category</th>
+            </tr>
+            </thead>
+            <tbody>
             <tr>
                 <td>${ad.title}</td>
                 <td>${ad.text}</td>
-                <td>${ad.createDate}</td>
                 <td>${ad.category.categoryName}</td>
             </tr>
-        </tbody>
-    </c:forEach>
+            </tbody>
+        </c:forEach>
+    </c:if>
 </table>
 </body>
 </html>
