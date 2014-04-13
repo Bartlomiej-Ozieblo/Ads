@@ -7,9 +7,9 @@
     <title>Ads</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="<c:url value="/resources/css/bootstrap.css" />" rel="stylesheet"/>
-    <link href="<c:url value="/resources/css/bootstrap-responsive.css" />" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -22,7 +22,7 @@
                 <form:label path="userPassword">User password</form:label>
                 <form:password path="userPassword"/>
                 <br/>
-                <input type="submit" value="Submit"/>
+                <input type="submit" value="Submit" class="btn" />
             </form:form>
         </p>
 
@@ -46,7 +46,7 @@
                         <td>
                             <form action="delete?id=${user.userId}" method="post">
                                 <input type="submit"
-                                       class="btn btn-danger btn-mini"
+                                       class="btn btn-danger"
                                        value="Delete"/>
                             </form>
                         </td>

@@ -7,58 +7,64 @@ import com.adds.repository.ContactRepository;
 import com.adds.repository.RoleRepository;
 import com.adds.repository.UserRepository;
 import com.adds.utils.PasswordUtil;
+import com.adds.utils.RegisterPlaceholder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.NoSuchAlgorithmException;
 
 @Controller
-public class UserController {
+@RequestMapping(value = "/register")
+public class RegisterController {
 
     @Autowired
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
     private ContactRepository contactRepository;
 
-    @RequestMapping(value = "/")
-    public String listUsers(ModelMap modelMap) {
-        modelMap.addAttribute("users", userRepository.findAll());
-        modelMap.addAttribute("user-entity", new User());
+    @Autowired
+    private RoleRepository roleRepository;
 
-        return "index";
+    @RequestMapping
+    public String showRegisterForm(ModelMap model) {
+        model.addAttribute("register-placeholder", new RegisterPlaceholder());
+        return "register";
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addUser(@ModelAttribute User user) {
+    @RequestMapping(value = "/now", method = RequestMethod.POST)
+    public String register(@ModelAttribute RegisterPlaceholder registerPlaceholder, ModelMap model) {
+        User user = registerPlaceholder.getUser();
+        Contact contact = registerPlaceholder.getContact();
+
+        if (!user.getUserPassword().equals(registerPlaceholder.getRepeatPassword())) {
+            return "redirect:/register";
+        }
+
+        if (user.getUserPassword().length() < 5) {
+            return "redirect:/register";
+        }
+
+        if (contact.getEmail() == null) {
+            return "redirect:/register";
+        }
+
         Role userRole = roleRepository.findOne(2);
-        user.setRole(userRole);
 
         try {
             user.setUserPassword(PasswordUtil.getInstance().textPasswordToHash(user.getUserPassword()));
+            user.setRole(userRole);
+            user.setContact(contact);
+
+            contactRepository.save(contact);
             userRepository.save(user);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-
-        return "redirect:/";
-    }
-
-    @RequestMapping(value = "/delete")
-    public String deleteUser(@RequestParam(value = "id") Integer userId) {
-        User user = userRepository.findOne(userId);
-        Contact contact = user.getContact();
-
-        userRepository.delete(user);
-        contactRepository.delete(contact);
 
         return "redirect:/";
     }
