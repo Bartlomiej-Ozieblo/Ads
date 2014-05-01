@@ -1,5 +1,6 @@
 package com.adds.security;
 
+import com.adds.domain.Role;
 import com.adds.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -47,10 +48,10 @@ public class UserAuthenticationProvider implements UserDetailsService {
         List<String> roles = new ArrayList<String>();
 
         if (role == 1) {
-            roles.add("ROLE_USER");
-            roles.add("ROLE_ADMIN");
+            roles.add(Role.ROLE_USER);
+            roles.add(Role.ROLE_ADMIN);
         } else if (role == 2) {
-            roles.add("ROLE_USER");
+            roles.add(Role.ROLE_USER);
         }
         return roles;
     }

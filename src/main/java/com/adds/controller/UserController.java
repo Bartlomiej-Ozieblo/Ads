@@ -2,6 +2,7 @@ package com.adds.controller;
 
 import com.adds.domain.Ad;
 import com.adds.domain.Category;
+import com.adds.domain.Role;
 import com.adds.domain.User;
 import com.adds.repository.AdRepository;
 import com.adds.repository.CategoryRepository;
@@ -45,7 +46,7 @@ public class UserController {
     public String usersAds(@PathVariable("userName") String userName, ModelMap modelMap) {
         User user = userRepository.findByUserName(userName);
 
-        if (user.getRole().getRoleName().equals("ROLE_ADMIN")) {
+        if (user.getRole().getRoleName().equals(Role.ROLE_ADMIN)) {
             return "redirect:/admin/" + user.getUserName();
         }
 
@@ -86,7 +87,7 @@ public class UserController {
         adRepository.save(ad);
         userRepository.save(user);
 
-        if (user.getRole().getRoleName().equals("ROLE_ADMIN")) {
+        if (user.getRole().getRoleName().equals(Role.ROLE_ADMIN)) {
             return "redirect:/admin/" + user.getUserName() + "?success=true";
         }
 

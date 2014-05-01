@@ -38,21 +38,31 @@ public class RegisterController {
     @RequestMapping(value = "/register/now", method = RequestMethod.POST)
     public String register(@ModelAttribute RegisterPlaceholder registerPlaceholder, ModelMap model) {
         User user = registerPlaceholder.getUser();
-        Contact contact = registerPlaceholder.getContact();
+        Contact contact = user.getContact();
 
-        if (!user.getUserPassword().equals(registerPlaceholder.getRepeatPassword())) {
-            return "redirect:/register";
+        if (user.getUserName() == null || user.getUserName().isEmpty()) {
+            return "redirect:/register?error=0";
+        }
+
+        User existingUser = userRepository.findByUserName(user.getUserName());
+        if (existingUser != null) {
+            return "redirect:/register?error=1";
+        }
+
+        if (registerPlaceholder.getRepeatPassword() == null || registerPlaceholder.getRepeatPassword().isEmpty() ||
+                !user.getUserPassword().equals(registerPlaceholder.getRepeatPassword())) {
+            return "redirect:/register?error=2";
         }
 
         if (user.getUserPassword().length() < 5) {
-            return "redirect:/register";
+            return "redirect:/register?error=3";
         }
 
-        if (contact.getEmail() == null) {
-            return "redirect:/register";
+        if (contact.getEmail() == null || contact.getEmail().isEmpty()) {
+            return "redirect:/register?error=4";
         }
 
-        Role userRole = roleRepository.findOne(2);
+        Role userRole = roleRepository.findOne(Role.ROLE_USER_ID);
 
         try {
             user.setUserPassword(PasswordUtil.getInstance().textPasswordToHash(user.getUserPassword()));

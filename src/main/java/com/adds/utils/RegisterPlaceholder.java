@@ -6,7 +6,6 @@ import com.adds.domain.User;
 public class RegisterPlaceholder {
 
     private User user;
-    private Contact contact;
     private String repeatPassword;
 
     public User getUser() {
@@ -15,14 +14,6 @@ public class RegisterPlaceholder {
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
     }
 
     public String getRepeatPassword() {

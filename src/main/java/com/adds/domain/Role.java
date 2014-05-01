@@ -6,6 +6,12 @@ import java.io.Serializable;
 @Entity(name = "roles")
 public class Role implements Serializable {
 
+    public static final String ROLE_USER = "ROLE_USER";
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
+
+    public static final int ROLE_USER_ID = 2;
+    public static final int ROLE_ADMIN_ID = 1;
+
     @Id
     @GeneratedValue
     @Column(name = "role_id")
