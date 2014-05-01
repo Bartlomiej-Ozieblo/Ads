@@ -1,11 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: bartlomiejozieblo
-  Date: 09.04.2014
-  Time: 10:38
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -14,12 +8,16 @@
     <title></title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%--<link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap-theme.min.css"/>" />--%>
+    <%--<link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>">--%>
+    <%--<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>--%>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <style>
         body {
             padding-top: 50px;
+            vertical-align: middle;
         }
 
         .starter-template {
@@ -47,23 +45,22 @@
             <a class="navbar-brand" href="#">Ads</a>
         </div>
         <div class="navbar-collapse collapse">
-            <form class="navbar-form navbar-right" role="form">
+            <form:form class="navbar-form navbar-right" action="/j_spring_security_check">
                 <div class="form-group">
-                    <input type="text" placeholder="Login" class="form-control">
+                    <input type="text" placeholder="Login" id="j_username" name="j_username" class="form-control">
                 </div>
                 <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control">
+                    <input type="password" placeholder="Password" id="j_password" name="j_password" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-success">Log in</button>
-            </form>
+            </form:form>
         </div>
-        <!--/.navbar-collapse -->
     </div>
 </div>
 
 <div class="container">
     <div class="starter-template">
-        <form:form class="form-signin" role="form" commandName="register-placeholder" action="now" method="post">
+        <form:form class="form-signin" role="form" commandName="register-placeholder" action="register/now" method="post">
             <div class="form-center">
                 <h1 class="form-signin-heading">Register</h1> <br/>
                 <form>

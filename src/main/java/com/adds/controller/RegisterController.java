@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.security.NoSuchAlgorithmException;
 
 @Controller
-@RequestMapping(value = "/register")
 public class RegisterController {
 
     @Autowired
@@ -30,13 +29,13 @@ public class RegisterController {
     @Autowired
     private RoleRepository roleRepository;
 
-    @RequestMapping
+    @RequestMapping(value = "/register")
     public String showRegisterForm(ModelMap model) {
         model.addAttribute("register-placeholder", new RegisterPlaceholder());
         return "register";
     }
 
-    @RequestMapping(value = "/now", method = RequestMethod.POST)
+    @RequestMapping(value = "/register/now", method = RequestMethod.POST)
     public String register(@ModelAttribute RegisterPlaceholder registerPlaceholder, ModelMap model) {
         User user = registerPlaceholder.getUser();
         Contact contact = registerPlaceholder.getContact();
