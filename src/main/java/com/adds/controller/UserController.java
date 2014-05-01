@@ -5,6 +5,7 @@ import com.adds.domain.Category;
 import com.adds.domain.User;
 import com.adds.repository.AdRepository;
 import com.adds.repository.CategoryRepository;
+import com.adds.repository.ContactRepository;
 import com.adds.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -25,6 +26,9 @@ public class UserController {
 
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ContactRepository contactRepository;
 
     //TODO: bad user name error handling
     @RequestMapping(value = "/user")
@@ -144,6 +148,7 @@ public class UserController {
         User user = userRepository.findByUserName(userName);
         user.setContact(modifiedUser.getContact());
 
+        contactRepository.save(modifiedUser.getContact());
         userRepository.save(user);
 
         return "redirect:/user/" + userName + "/info";

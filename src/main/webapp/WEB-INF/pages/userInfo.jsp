@@ -155,7 +155,7 @@
                     <form>
                         <div class="form-group">
                             <form:label for="inputUsername" path="userName">Username</form:label>
-                            <form:input type="text" class="form-control" id="inputUsername" value="Admin" disabled="disabled" path="userName" readonly="true" />
+                            <form:input type="text" class="form-control" id="inputUsername" disabled="disabled" path="userName" readonly="true" />
                         </div>
                         <div class="form-group">
                             <form:label for="inputPhoneNumber" path="contact.phoneNumber">Phone number</form:label>
