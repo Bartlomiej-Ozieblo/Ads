@@ -147,7 +147,6 @@
 
             <h1 class="page-header">
                 Contact info
-                <p class="lead">ew. podtytul bo ladnie</p>
             </h1>
 
             <form:form class="form-signin" role="form" commandName="user_entity" action="info/edit" method="post">

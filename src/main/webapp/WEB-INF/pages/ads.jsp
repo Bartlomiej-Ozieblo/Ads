@@ -113,44 +113,28 @@
 
 <!-- Main -->
 <div class="container">
-    <div class="row">
-        <c:if test="${not empty param.register and param.register == true}">
-            <div class="alert alert-success">You account has been created. Thank you!</div>
-        </c:if>
+    <div class="page-header">
+        <h1>${user.userName}</h1>
     </div>
-    <div class="row">
-        <c:if test="${empty pageContext.request.userPrincipal.name}">
-            <div class="row">
-                <div class="jumbotron">
-                    <h1>Hello, guest!</h1>
-
-                    <p>If you want to join our community please register. This will give you availability to create and
-                        add your advertisements. If you want to just read existing ads, please be welcome. </p>
-
-                    <p><a class="btn btn-primary btn-lg" role="button" href="register">Join now!</a></p>
+    <c:choose>
+        <c:when test="${not empty user.ads}">
+            <c:forEach items="${user.ads}" var="ad">
+                <div class="panel panel-default">
+                    <div class="panel-heading">${ad.title}</div>
+                    <div class="panel-body">${ad.text}</div>
+                    <div class="panel-footer"><a href="/ad/${ad.id}">Check this out >></a></div>
                 </div>
-            </div>
-        </c:if>
-    </div>
-    <div class="row">
-        <c:forEach items="${categories}" var="category" varStatus="i">
-            <c:if test="${(i.index + 1) mod 4 == 1}">
-                <div class="row">
-            </c:if>
-            <div class="col-xs-3">
-                <div class="well"><p><a href="/category/${category.id}">${category.categoryName}</a></p></div>
-            </div>
-            <c:if test="${(i.index + 1) mod 4 == 0}">
-                </div>
-            </c:if>
-        </c:forEach>
-    </div>
+            </c:forEach>
+        </c:when>
+        <c:otherwise>
+            <div class="alert alert-warning">There aren't any ads marked with this category yet.</div>
+        </c:otherwise>
+    </c:choose>
+
+    <footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a
+            href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
+
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </div>
-<!-- /Main -->
-
-<footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a
-        href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
-
-<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </body>
 </html>

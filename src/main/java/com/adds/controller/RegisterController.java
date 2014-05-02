@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.NoSuchAlgorithmException;
 
 @Controller
@@ -36,7 +37,7 @@ public class RegisterController {
     }
 
     @RequestMapping(value = "/register/now", method = RequestMethod.POST)
-    public String register(@ModelAttribute RegisterPlaceholder registerPlaceholder, ModelMap model) {
+    public String register(@ModelAttribute RegisterPlaceholder registerPlaceholder, HttpServletRequest request) {
         User user = registerPlaceholder.getUser();
         Contact contact = user.getContact();
 
@@ -71,10 +72,12 @@ public class RegisterController {
 
             contactRepository.save(contact);
             userRepository.save(user);
+
+            return "redirect:/?register=true";
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-        }
 
-        return "redirect:/";
+            return "redirect:/?register=false";
+        }
     }
 }

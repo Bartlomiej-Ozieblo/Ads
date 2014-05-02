@@ -146,8 +146,7 @@
             </p>
 
             <h1 class="page-header">
-                Your advertisement
-                <p class="lead">ew. podtytul bo ladnie</p>
+                Your advertisements
             </h1>
 
             <c:if test="${param.success}">

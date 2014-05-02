@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
     <script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
     <!--[if lt IE 9]>
     <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -113,44 +112,35 @@
 
 <!-- Main -->
 <div class="container">
-    <div class="row">
-        <c:if test="${not empty param.register and param.register == true}">
-            <div class="alert alert-success">You account has been created. Thank you!</div>
-        </c:if>
+    <div class="page-header">
+        <h1>${ad.title}</h1>
+        <p class="lead">Author: ${user.userName}</p>
+        <p class="lead">Category: ${ad.category.categoryName}</p>
     </div>
     <div class="row">
-        <c:if test="${empty pageContext.request.userPrincipal.name}">
-            <div class="row">
-                <div class="jumbotron">
-                    <h1>Hello, guest!</h1>
-
-                    <p>If you want to join our community please register. This will give you availability to create and
-                        add your advertisements. If you want to just read existing ads, please be welcome. </p>
-
-                    <p><a class="btn btn-primary btn-lg" role="button" href="register">Join now!</a></p>
-                </div>
-            </div>
-        </c:if>
-    </div>
-    <div class="row">
-        <c:forEach items="${categories}" var="category" varStatus="i">
-            <c:if test="${(i.index + 1) mod 4 == 1}">
-                <div class="row">
+        <div class="col-xs-6">
+            ${ad.text}
+        </div>
+        <div class="col-xs-6">
+            <p class="lead">Contact</p>
+            <c:if test="${not empty user.contact.email}">
+                <b>Email: </b> ${user.contact.email}<br/>
             </c:if>
-            <div class="col-xs-3">
-                <div class="well"><p><a href="/category/${category.id}">${category.categoryName}</a></p></div>
-            </div>
-            <c:if test="${(i.index + 1) mod 4 == 0}">
-                </div>
+            <c:if test="${not empty user.contact.phoneNumber}">
+                <b>Phone number: </b> ${user.contact.phoneNumber}<br/>
             </c:if>
-        </c:forEach>
+            <c:if test="${not empty user.contact.address}">
+                <b>Address: </b> ${user.contact.address}<br/>
+            </c:if>
+        </div>
     </div>
+
+    <!-- /Main -->
+
+    <footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a
+            href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
+
+    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </div>
-<!-- /Main -->
-
-<footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a
-        href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
-
-<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </body>
 </html>

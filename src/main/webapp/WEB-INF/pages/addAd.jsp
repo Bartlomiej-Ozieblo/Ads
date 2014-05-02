@@ -154,10 +154,18 @@
                     <i class="glyphicon glyphicon-chevron-left"></i></button>
             </p>
 
-            <h1 class="page-header">
-                Your advertisement
-                <p class="lead">ew. podtytul bo ladnie</p>
-            </h1>
+            <c:choose>
+                <c:when test="${not edit}">
+                    <h1 class="page-header">
+                        Add advertisement
+                    </h1>
+                </c:when>
+                <c:otherwise>
+                    <h1 class="page-header">
+                        Edit advertisement
+                    </h1>
+                </c:otherwise>
+            </c:choose>
 
             <c:choose>
                 <c:when test="${not edit}">

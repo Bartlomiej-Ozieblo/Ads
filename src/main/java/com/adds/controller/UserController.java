@@ -9,6 +9,7 @@ import com.adds.repository.CategoryRepository;
 import com.adds.repository.ContactRepository;
 import com.adds.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -38,11 +39,16 @@ public class UserController {
                 ((org.springframework.security.core.userdetails.User)
                         SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
-        return "redirect:/user/" + userName;
+        if (userName != null) {
+            return "redirect:/user/" + userName;
+        } else {
+            return "redirect:/";
+        }
     }
 
     //TODO: bad user name error handling
     @RequestMapping(value = "/user/{userName}")
+    @PreAuthorize("hasRole('ROLE_USER')")
     public String usersAds(@PathVariable("userName") String userName, ModelMap modelMap) {
         User user = userRepository.findByUserName(userName);
 
@@ -73,40 +79,6 @@ public class UserController {
         return "addAd";
     }
 
-    //TODO: bad user name error handling and validating
-    @RequestMapping(value = "/user/{userName}/ad/add/now", method = RequestMethod.POST)
-    public String addAd(@PathVariable("userName") String userName, @ModelAttribute Ad ad, ModelMap model) {
-        ad.setCreateDate(new Date());
-
-        Category category = categoryRepository.findOne(ad.getCategory().getId());
-        ad.setCategory(category);
-
-        User user = userRepository.findByUserName(userName);
-        user.getAds().add(ad);
-
-        adRepository.save(ad);
-        userRepository.save(user);
-
-        if (user.getRole().getRoleName().equals(Role.ROLE_ADMIN)) {
-            return "redirect:/admin/" + user.getUserName() + "?success=true";
-        }
-
-        return "redirect:/user/" + userName + "?success=true";
-    }
-
-    //TODO: bad user name and ad id error handling
-    @RequestMapping(value = "/user/{userName}/ad/remove/{id}")
-    public String removeAd(@PathVariable("userName") String userName, @PathVariable("id") Integer id, ModelMap model) {
-        User user = userRepository.findByUserName(userName);
-        Ad ad = adRepository.findOne(id);
-
-        user.getAds().remove(ad);
-        userRepository.save(user);
-        adRepository.delete(ad);
-
-        return "redirect:/user/" + userName;
-    }
-
     //TODO: bad user name error handling
     @RequestMapping(value = "user/{userName}/ad/edit/{id}")
     public String showEditAdForm(@PathVariable("userName") String userName, @PathVariable("id") Integer id, ModelMap model) {
@@ -117,20 +89,6 @@ public class UserController {
         model.addAttribute("edit", true);
 
         return "addAd";
-    }
-
-    //TODO: bad user name error handling and validation
-    @RequestMapping(value = "user/{userName}/ad/edit/{id}/now", method = RequestMethod.POST)
-    public String editAd(@PathVariable("userName") String userName, @PathVariable("id") Integer id, @ModelAttribute Ad modifiedAd, ModelMap model) {
-        Ad ad = adRepository.findOne(id);
-        ad.setCategory(modifiedAd.getCategory());
-        ad.setCreateDate(new Date());
-        ad.setTitle(modifiedAd.getTitle());
-        ad.setText(modifiedAd.getText());
-
-        adRepository.save(ad);
-
-        return "redirect:/user/" + userName;
     }
 
     //TODO: bad user name error handling

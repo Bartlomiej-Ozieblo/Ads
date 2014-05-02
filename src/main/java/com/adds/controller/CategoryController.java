@@ -20,9 +20,9 @@ public class CategoryController {
         return "categories";
     }
 
-    @RequestMapping(value = "/{categoryName}")
-    public String showCategory(@PathVariable("categoryName") String categoryName) {
-        Category category = categoryRepository.findByCategoryName(categoryName);
+    @RequestMapping(value = "/{id}")
+    public String showCategory(@PathVariable("id") Integer categoryId) {
+        Category category = categoryRepository.findOne(categoryId);
 
         return "categories";
     }
