@@ -9,7 +9,8 @@
     <title>Bootply.com - Dashboard with Off-canvas Sidebar</title>
     <meta name="generator" content="Bootply"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js" ></script>
     <style type="text/css">
         /*
 * Style tweaks
@@ -199,7 +200,6 @@
 </footer>
 
 <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 <!-- JavaScript jQuery code from Bootply.com editor -->
 
