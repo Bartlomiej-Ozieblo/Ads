@@ -1,4 +1,4 @@
-package com.adds.utils;
+package com.ads.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

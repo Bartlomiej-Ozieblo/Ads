@@ -1,7 +1,7 @@
-package com.adds.security;
+package com.ads.security;
 
-import com.adds.domain.Role;
-import com.adds.repository.UserRepository;
+import com.ads.domain.Role;
+import com.ads.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,7 +25,7 @@ public class UserAuthenticationProvider implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.adds.domain.User user = userRepository.findByUserName(username);
+        com.ads.domain.User user = userRepository.findByUserName(username);
 //            boolean enabled = true;
 //            boolean accountNonExpired = true;
 //            boolean credentialsNonExpired = true;

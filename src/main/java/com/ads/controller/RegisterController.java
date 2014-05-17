@@ -1,13 +1,13 @@
-package com.adds.controller;
+package com.ads.controller;
 
-import com.adds.domain.Contact;
-import com.adds.domain.Role;
-import com.adds.domain.User;
-import com.adds.repository.ContactRepository;
-import com.adds.repository.RoleRepository;
-import com.adds.repository.UserRepository;
-import com.adds.utils.PasswordUtil;
-import com.adds.utils.RegisterPlaceholder;
+import com.ads.domain.Contact;
+import com.ads.domain.Role;
+import com.ads.domain.User;
+import com.ads.repository.ContactRepository;
+import com.ads.repository.RoleRepository;
+import com.ads.repository.UserRepository;
+import com.ads.utils.PasswordUtil;
+import com.ads.utils.RegisterPlaceholder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

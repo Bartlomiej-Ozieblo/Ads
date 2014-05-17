@@ -110,36 +110,10 @@
 <!-- Main -->
 <div class="container">
     <div class="page-header">
-        <h1>${ad.title}</h1>
-
-        <p class="lead">Author: ${user.userName}</p>
-
-        <p class="lead">Category: ${ad.category.categoryName}</p>
-        <c:if test="${admin == true}">
-            <a href="/admin/ad/id/${ad.id}/remove" class="btn btn-danger">DELETE</a>
-        </c:if>
-    </div>
-    <div class="row">
-        <div class="col-xs-6">
-            ${ad.text}
-        </div>
-        <div class="col-xs-6">
-            <p class="lead">Contact</p>
-            <c:if test="${not empty user.contact.email}">
-                <b>Email: </b> ${user.contact.email}<br/>
-            </c:if>
-            <c:if test="${not empty user.contact.phoneNumber}">
-                <b>Phone number: </b> ${user.contact.phoneNumber}<br/>
-            </c:if>
-            <c:if test="${not empty user.contact.address}">
-                <b>Address: </b> ${user.contact.address}<br/>
-            </c:if>
-        </div>
+        <div class="alert alert-danger">Ad doesn't exists.</div>
     </div>
 
     <!-- /Main -->
-
-    <%--<footer class="text-center">Authors: Bartłomiej Oziębło, Matuesz Mularski</footer>--%>
 
     <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </div>

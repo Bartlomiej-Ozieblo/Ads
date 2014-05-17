@@ -1,7 +1,7 @@
-package com.adds.controller;
+package com.ads.controller;
 
-import com.adds.domain.Category;
-import com.adds.repository.CategoryRepository;
+import com.ads.domain.Category;
+import com.ads.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,13 +17,6 @@ public class CategoryController {
     @RequestMapping(value = "/")
     public String showAllCategories(ModelMap model) {
         model.addAttribute("categories", categoryRepository.findAll());
-        return "categories";
-    }
-
-    @RequestMapping(value = "/{id}")
-    public String showCategory(@PathVariable("id") Integer categoryId) {
-        Category category = categoryRepository.findOne(categoryId);
-
         return "categories";
     }
 }

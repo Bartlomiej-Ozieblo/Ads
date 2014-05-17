@@ -1,6 +1,6 @@
-package com.adds.repository;
+package com.ads.repository;
 
-import com.adds.domain.Category;
+import com.ads.domain.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {

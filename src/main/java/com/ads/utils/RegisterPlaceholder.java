@@ -1,7 +1,6 @@
-package com.adds.utils;
+package com.ads.utils;
 
-import com.adds.domain.Contact;
-import com.adds.domain.User;
+import com.ads.domain.User;
 
 public class RegisterPlaceholder {
 

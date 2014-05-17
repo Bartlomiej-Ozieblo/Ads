@@ -1,15 +1,16 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Bootply.com - Dashboard with Off-canvas Sidebar</title>
+    <title>Ads</title>
     <meta name="generator" content="Bootply"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
-    <script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js"></script>
+    <%--<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>--%>
+    <link href="../../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js" ></script>
     <style type="text/css">
         /*
          * Style tweaks
@@ -113,7 +114,7 @@
                 <div class="container">
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a role="button" href="/user/${pageContext.request.userPrincipal.name}"><i
+                            <li><a role="button" href="/user"><i
                                     class="glyphicon glyphicon-user"></i> ${pageContext.request.userPrincipal.name}
                             </a></li>
                             <li><a href="${pageContext.request.contextPath}/j_spring_security_logout"><i
@@ -132,17 +133,24 @@
             <ul class="nav nav-sidebar">
                 <c:choose>
                     <c:when test="${edit}">
-                        <li class="active"><a href="/user/${pageContext.request.userPrincipal.name}">My ads</a></li>
-                        <li><a href="/user/${pageContext.request.userPrincipal.name}/ad/add">Add ad</a></li>
-                        <li><a href="/user/${pageContext.request.userPrincipal.name}/info">My info</a></li>
+                        <li class="active"><a href="/user">My ads</a></li>
+                        <li><a href="/user/ad/add">Add ad</a></li>
+                        <li><a href="/user/info">My info</a></li>
                     </c:when>
                     <c:otherwise>
-                        <li><a href="/user/${pageContext.request.userPrincipal.name}">My ads</a></li>
+                        <li><a href="/user">My ads</a></li>
                         <li class="active"><a href="#">Add ad</a></li>
-                        <li><a href="/user/${pageContext.request.userPrincipal.name}/info">My info</a></li>
+                        <li><a href="/user/info">My info</a></li>
                     </c:otherwise>
                 </c:choose>
             </ul>
+            <c:if test="${admin == true}">
+                <ul class="nav nav-sidebar">
+                    <li><a href="/admin/ads">Advertisements</a></li>
+                    <li><a href="/admin/categories">Categories</a></li>
+                    <li><a href="/admin/users">Users</a></li>
+                </ul>
+            </c:if>
         </div>
         <!--/span-->
 
@@ -169,7 +177,7 @@
 
             <c:choose>
                 <c:when test="${not edit}">
-                    <form:form class="form-signin" role="form" commandName="ad_entity" method="post" action="add/now">
+                    <form:form class="form-signin" role="form" commandName="ad_entity" method="post" action="/ad/add">
                         <div class="form-center">
                             <form>
                                 <div class="form-group">
@@ -196,7 +204,7 @@
                 </c:when>
                 <c:otherwise>
                     <form:form class="form-signin" role="form" commandName="ad_entity" method="post"
-                               action="/user/${pageContext.request.userPrincipal.name}/ad/edit/${ad_entity.id}/now">
+                               action="/ad/edit/id/${ad_entity.id}">
                         <div class="form-center">
                             <form>
                                 <div class="form-group">
@@ -236,9 +244,7 @@
     <!--/row-->
 </div>
 
-<footer>
-    <p class="pull-right">©2014 Company</p>
-</footer>
+<%--<footer class="text-center">Authors: Bartłomiej Oziębło, Matuesz Mularski</footer>--%>
 
 <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 

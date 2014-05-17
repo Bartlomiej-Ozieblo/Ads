@@ -1,6 +1,6 @@
-package com.adds.repository;
+package com.ads.repository;
 
-import com.adds.domain.Role;
+import com.ads.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, Integer> {

@@ -78,7 +78,7 @@
                     <div class="container">
                         <div class="navbar-collapse collapse">
                             <ul class="nav navbar-nav navbar-right">
-                                <li><a role="button" href="/user/${pageContext.request.userPrincipal.name}"><i
+                                <li><a role="button" href="/user"><i
                                         class="glyphicon glyphicon-user"></i> ${pageContext.request.userPrincipal.name}
                                 </a></li>
                                 <li><a href="${pageContext.request.contextPath}/j_spring_security_logout"><i
@@ -144,8 +144,7 @@
 </div>
 <!-- /Main -->
 
-<footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a
-        href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
+<%--<footer class="text-center">Authors: Bartłomiej Oziębło, Matuesz Mularski</footer>--%>
 
 <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </body>

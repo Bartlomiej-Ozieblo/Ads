@@ -1,20 +1,20 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c' %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Bootply.com - Dashboard with Off-canvas Sidebar</title>
+    <title>Ads</title>
     <meta name="generator" content="Bootply"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="../../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js" ></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
     <style type="text/css">
         /*
-         * Style tweaks
-         * --------------------------------------------------
-         */
+* Style tweaks
+* --------------------------------------------------
+*/
         body {
             padding-top: 50px;
             background-color: #f5f5f5;
@@ -94,6 +94,15 @@
         }
 
     </style>
+    <script type='text/javascript'>
+
+        $(document).ready(function () {
+            $('[data-toggle=offcanvas]').click(function () {
+                $('.row-offcanvas').toggleClass('active');
+            });
+        });
+
+    </script>
 </head>
 
 <!-- HTML code from Bootply.com editor -->
@@ -132,15 +141,13 @@
             <ul class="nav nav-sidebar">
                 <li><a href="/user">My ads</a></li>
                 <li><a href="/user/ad/add">Add ad</a></li>
-                <li class="active"><a href="#">My info</a></li>
+                <li><a href="/user/info">My info</a></li>
             </ul>
-            <c:if test="${admin == true}">
-                <ul class="nav nav-sidebar">
-                    <li><a href="/admin/ads">Advertisements</a></li>
-                    <li><a href="/admin/categories">Categories</a></li>
-                    <li><a href="/admin/users">Users</a></li>
-                </ul>
-            </c:if>
+            <ul class="nav nav-sidebar">
+                <li><a href="/admin/ads">Advertisements</a></li>
+                <li><a href="/admin/categories">Categories</a></li>
+                <li class="active"><a href="/admin/users">Users</a></li>
+            </ul>
         </div>
         <!--/span-->
 
@@ -153,56 +160,62 @@
             </p>
 
             <h1 class="page-header">
-                Contact info
+                Users
             </h1>
 
-            <form:form class="form-signin" role="form" commandName="user_entity" action="info/edit" method="post">
-                <div class="form-center">
-                    <form>
-                        <div class="form-group">
-                            <form:label for="inputUsername" path="userName">Username</form:label>
-                            <form:input type="text" class="form-control" id="inputUsername" disabled="disabled" path="userName" readonly="true" />
-                        </div>
-                        <div class="form-group">
-                            <form:label for="inputPhoneNumber" path="contact.phoneNumber">Phone number</form:label>
-                            <form:input type="text" class="form-control" id="inputPhoneNumber" placeholder="Phone number" path="contact.phoneNumber" />
-                        </div>
-                        <div class="form-group">
-                            <form:label for="inputAddress" path="contact.address">Address</form:label>
-                            <form:textarea type="text" class="form-control" id="inputAddress" placeholder="Address" rows="3" path="contact.address"/>
-                        </div>
-                        <div class="form-group">
-                            <form:label for="inputEmail" path="contact.email">E-mail</form:label>
-                            <form:input type="email" class="form-control" id="inputEmail" placeholder="E-mail" path="contact.email" />
-                        </div>
-                        <div class="form-group">
-                            <form:label for="inputPassword" path="userPassword">Password</form:label>
-                            <form:input path="userPassword" type="password" id="inputPassword" placeholder="Password" />
-                        </div>
-                        <button class="btn btn-primary" type="submit">Edit</button>
-                    </form>
-                </div>
-            </form:form>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Login</th>
+                        <th>Role</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${users}" var="user">
+                        <tr>
+                            <td>${user.userId}</td>
+                            <td><a href="/admin/user/id/${user.userId}">${user.userName}</a></td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${user.role.id == 1}">
+                                        <select class="form-control" disabled>
+                                            <option>Admin</option>
+                                        </select>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <select class="form-control" onchange="window.location.href = '/admin/user/role/admin/${user.userId}'">
+                                            <option>User</option>
+                                            <option>Admin</option>
+                                        </select>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${user.role.id == 1}">
+                                        <button class="btn-danger btn btn-block disabled">DELETE</button>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="/admin/user/remove/id/${user.userId}" class="btn-danger btn btn-block">DELETE</a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-    <!--/row-->
 </div>
-
-<%--<footer class="text-center">Authors: Bartłomiej Oziębło, Matuesz Mularski</footer>--%>
+<!--/.container-->
 
 <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
-<!-- JavaScript jQuery code from Bootply.com editor -->
-
-<script type='text/javascript'>
-
-    $(document).ready(function () {
-        $('[data-toggle=offcanvas]').click(function () {
-            $('.row-offcanvas').toggleClass('active');
-        });
-    });
-
-</script>
 
 </body>
 </html>

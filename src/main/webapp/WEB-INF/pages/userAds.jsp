@@ -6,11 +6,11 @@
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Bootply.com - Dashboard with Off-canvas Sidebar</title>
+    <title>Ads</title>
     <meta name="generator" content="Bootply"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="../../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js" ></script>
+    <link href="../../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js"></script>
     <style type="text/css">
         /*
 * Style tweaks
@@ -114,7 +114,7 @@
                 <div class="container">
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a role="button" href="/user/${pageContext.request.userPrincipal.name}"><i
+                            <li><a role="button" href="/user"><i
                                     class="glyphicon glyphicon-user"></i> ${pageContext.request.userPrincipal.name}
                             </a></li>
                             <li><a href="${pageContext.request.contextPath}/j_spring_security_logout"><i
@@ -132,9 +132,16 @@
         <div class="col-sm-3 col-md-2 sidebar-offcanvas" id="sidebar" role="navigation">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="#">My ads</a></li>
-                <li><a href="/user/${pageContext.request.userPrincipal.name}/ad/add">Add ad</a></li>
-                <li><a href="/user/${pageContext.request.userPrincipal.name}/info">My info</a></li>
+                <li><a href="/user/ad/add">Add ad</a></li>
+                <li><a href="/user/info">My info</a></li>
             </ul>
+            <c:if test="${admin == true}">
+                <ul class="nav nav-sidebar">
+                    <li><a href="/admin/ads">Advertisements</a></li>
+                    <li><a href="/admin/categories">Categories</a></li>
+                    <li><a href="/admin/users">Users</a></li>
+                </ul>
+            </c:if>
         </div>
         <!--/span-->
 
@@ -174,10 +181,12 @@
                                     <td>${ad.createDate}</td>
                                     <td>${ad.category.categoryName}</td>
                                     <td>
-                                        <a class="btn bg-primary" href="/user/${pageContext.request.userPrincipal.name}/ad/edit/${ad.id}">EDIT</a>
+                                        <a class="btn bg-primary"
+                                           href="/user/ad/edit/${ad.id}">EDIT</a>
                                     </td>
                                     <td>
-                                        <a class="btn-danger btn" href="/user/${pageContext.request.userPrincipal.name}/ad/remove/${ad.id}">DELETE</a>
+                                        <a class="btn-danger btn"
+                                           href="/ad/remove/id/${ad.id}">DELETE</a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -195,9 +204,7 @@
 </div>
 <!--/.container-->
 
-<footer>
-    <p class="pull-right">©2014 Company</p>
-</footer>
+<%--<footer class="text-center">Authors: Bartłomiej Oziębło, Matuesz Mularski</footer>--%>
 
 <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 

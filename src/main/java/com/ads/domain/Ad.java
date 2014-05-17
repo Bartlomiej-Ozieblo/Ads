@@ -1,4 +1,4 @@
-package com.adds.domain;
+package com.ads.domain;
 
 import org.hibernate.annotations.Type;
 
