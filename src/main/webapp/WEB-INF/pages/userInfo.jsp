@@ -152,6 +152,23 @@
                     <i class="glyphicon glyphicon-chevron-left"></i></button>
             </p>
 
+            <c:if test="${not empty param.error}">
+                <c:choose>
+                    <c:when test="${param.error == 0}">
+                        <div class="alert alert-danger">E-mail field is empty.</div>
+                    </c:when>
+                    <c:when test="${param.error == 1}">
+                        <div class="alert alert-danger">Password is too short.</div>
+                    </c:when>
+                    <c:when test="${param.error == 2}">
+                        <div class="alert alert-danger">New password is the same as old.</div>
+                    </c:when>
+                    <c:when test="${param.error == 3}">
+                        <div class="alert alert-danger">Unidentified error.</div>
+                    </c:when>
+                </c:choose>
+            </c:if>
+
             <h1 class="page-header">
                 Contact info
             </h1>

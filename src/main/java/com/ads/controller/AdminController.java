@@ -78,35 +78,6 @@ public class AdminController {
         return "adminUser";
     }
 
-    @RequestMapping(value = "/admin/categories")
-    public String showCategoriesPage(ModelMap modelMap) {
-        modelMap.addAttribute("categories", categoryRepository.findAll());
-        modelMap.addAttribute("category-entity", new Category());
-        return "adminCategories";
-    }
-
-    @RequestMapping(value = "/admin/category/add", method = RequestMethod.POST)
-    public String addCategory(@ModelAttribute Category category) {
-        categoryRepository.save(category);
-        return "redirect:/admin/categories";
-    }
-
-    @RequestMapping(value = "/admin/category/id/{id}/remove")
-    public String removeCategory(@PathVariable("id") Integer categoryId) {
-        List<Ad> allAds = adRepository.findAll();
-        List<Ad> ads = new ArrayList<Ad>();
-        for (Ad ad : allAds) {
-            if (ad.getCategory().getId().equals(categoryId)) {
-                ads.add(ad);
-            }
-        }
-
-        adRepository.delete(ads);
-        categoryRepository.delete(categoryId);
-
-        return "redirect:/admin/categories";
-    }
-
     @RequestMapping(value = "/admin/ads")
     public String showAllAd(ModelMap modelMap) {
         modelMap.addAttribute("categories", categoryRepository.findAll());

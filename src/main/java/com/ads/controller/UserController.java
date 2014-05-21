@@ -8,6 +8,7 @@ import com.ads.repository.AdRepository;
 import com.ads.repository.CategoryRepository;
 import com.ads.repository.ContactRepository;
 import com.ads.repository.UserRepository;
+import com.ads.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 @Controller
@@ -87,6 +89,7 @@ public class UserController {
                         SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
         User user = userRepository.findByUserName(userName);
+        user.setUserPassword("FAKE");
 
         if (isAdmin()) {
             model.addAttribute("admin", true);
@@ -97,15 +100,42 @@ public class UserController {
         return "userInfo";
     }
 
-    //TODO: info validation + changing password
     @RequestMapping(value = "/user/info/edit", method = RequestMethod.POST)
     public String editInfo(@ModelAttribute User modifiedUser) {
         String userName =
                 ((org.springframework.security.core.userdetails.User)
                         SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
+        if (modifiedUser.getContact().getEmail() == null || modifiedUser.getContact().getEmail().isEmpty()) {
+            return "redirect:/user/info?error=0";
+        }
+
         User user = userRepository.findByUserName(userName);
         user.setContact(modifiedUser.getContact());
+
+        String newPassword = modifiedUser.getUserPassword();
+        if (!newPassword.equals("FAKE")) {
+            if (newPassword.isEmpty() || newPassword.length() < 5) {
+                return "redirect:/user/info?error=1";
+            }
+
+            String hashPassword = null;
+            try {
+                hashPassword = PasswordUtil.getInstance().textPasswordToHash(modifiedUser.getUserPassword());
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+
+            if (hashPassword != null) {
+                if (hashPassword.equals(user.getUserPassword())) {
+                    return "redirect:/user/info?error=2";
+                } else {
+                    user.setUserPassword(hashPassword);
+                }
+            } else {
+                return "redirect:/user/info?error=3";
+            }
+        }
 
         contactRepository.save(modifiedUser.getContact());
         userRepository.save(user);

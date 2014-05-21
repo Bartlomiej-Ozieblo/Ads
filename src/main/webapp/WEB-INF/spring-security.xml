@@ -10,8 +10,8 @@
     <import resource="mvc-dispatcher-servlet.xml" />
     <security:http pattern="/resources" security="none" />
 
-    <security:http auto-config="true" use-expressions="true" access-denied-page="/">
-        <security:form-login login-page="/" />
+    <security:http auto-config="true" use-expressions="true" access-denied-page="/denied">
+        <security:form-login login-page="/login" />
         <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
         <security:intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />
         <security:intercept-url pattern="/ad/add" access="hasRole('ROLE_USER')" />
