@@ -252,9 +252,18 @@
                                         <td><a href="/ad/${ad.id}">${ad.title}</a></td>
                                         <td>${ad.createDate}</td>
                                         <td>${ad.category.categoryName}</td>
-                                        <td>
-                                            <a href="/admin/ad/id/${ad.id}/remove" class="btn-danger btn">DELETE</a>
-                                        </td>
+                                        <c:choose>
+                                            <c:when test="${user.role.id == 1}">
+                                                <td>
+                                                    <a href="#" class="btn-danger btn disabled">DELETE</a>
+                                                </td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td>
+                                                    <a href="/admin/ad/id/${ad.id}/remove" class="btn-danger btn">DELETE</a>
+                                                </td>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </tr>
                                 </c:forEach>
                             </c:when>
@@ -266,9 +275,18 @@
                                             <td><a href="/ad/${ad.id}">${ad.title}</a></td>
                                             <td>${ad.createDate}</td>
                                             <td>${ad.category.categoryName}</td>
-                                            <td>
-                                                <a href="/admin/ad/id/${ad.id}/remove" class="btn-danger btn">DELETE</a>
-                                            </td>
+                                            <c:choose>
+                                                <c:when test="${user.role.id == 1}">
+                                                    <td>
+                                                        <a href="#" class="btn-danger btn disabled">DELETE</a>
+                                                    </td>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <td>
+                                                        <a href="/admin/ad/id/${ad.id}/remove" class="btn-danger btn">DELETE</a>
+                                                    </td>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </tr>
                                     </c:if>
                                 </c:forEach>

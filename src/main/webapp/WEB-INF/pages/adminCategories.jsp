@@ -149,6 +149,10 @@
                     <i class="glyphicon glyphicon-chevron-left"></i></button>
             </p>
 
+            <c:if test="${not empty param.error and param.error == true}">
+                <div class="alert alert-danger">Cannot remove category.</div>
+            </c:if>
+
             <h1 class="page-header">
                 Categories
             </h1>

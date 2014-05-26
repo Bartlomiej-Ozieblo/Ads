@@ -2,8 +2,11 @@ package com.ads.controller;
 
 import com.ads.domain.Ad;
 import com.ads.domain.Category;
+import com.ads.domain.Role;
+import com.ads.domain.User;
 import com.ads.repository.AdDAO;
 import com.ads.repository.CategoryDAO;
+import com.ads.repository.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,6 +20,9 @@ import java.util.List;
 
 @Controller
 public class CategoryController {
+
+    @Autowired
+    private UserDAO userRepository;
 
     @Autowired
     private CategoryDAO categoryRepository;
@@ -45,6 +51,19 @@ public class CategoryController {
 
     @RequestMapping(value = "/admin/category/id/{id}/remove")
     public String removeCategory(@PathVariable("id") Integer categoryId) {
+        List<User> users = userRepository.findAll();
+        for (User user : users) {
+            if (user.getRole().getId() != Role.ROLE_ADMIN_ID) {
+                continue;
+            }
+
+            for (Ad ad : user.getAds()) {
+                if (ad.getCategory().getId().equals(categoryId)) {
+                    return "redirect:/admin/categories?error=true";
+                }
+            }
+        }
+
         List<Ad> allAds = adRepository.findAll();
         List<Ad> ads = new ArrayList<Ad>();
         for (Ad ad : allAds) {
