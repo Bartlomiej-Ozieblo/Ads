@@ -8,9 +8,9 @@
     <title></title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap-theme.min.css" />
+    <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
     <style type="text/css">
         .modal-footer {
@@ -26,6 +26,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" onclick="window.history.back()">×</button>
                 <h1 class="text-center">Login</h1>
+                <p class="caption text-center">To proceed you need to authenticate yourself first.</p>
             </div>
             <div class="modal-body">
                 <form:form class="form col-md-12 center-block" action="/j_spring_security_check">
@@ -48,7 +49,7 @@
 </div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jquery.min.js" type="text/javascript"></script>
 </body>
 
 </html>

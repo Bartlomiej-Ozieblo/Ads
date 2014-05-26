@@ -9,8 +9,8 @@
     <title>Ads</title>
     <meta name="generator" content="Bootply"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="../../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
-    <script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js"></script>
+    <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
     <style type="text/css">
         /*
 * Style tweaks
@@ -182,7 +182,7 @@
                                     <td>${ad.category.categoryName}</td>
                                     <td>
                                         <a class="btn bg-primary"
-                                           href="/user/ad/edit/${ad.id}">EDIT</a>
+                                           href="/user/ad/edit/id/${ad.id}">EDIT</a>
                                     </td>
                                     <td>
                                         <a class="btn-danger btn"
@@ -204,11 +204,9 @@
 </div>
 <!--/.container-->
 
-<%--<footer class="text-center">Authors: Bartłomiej Oziębło, Matuesz Mularski</footer>--%>
 
-<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jquery.min.js" type="text/javascript"></script>
 
-<!-- JavaScript jQuery code from Bootply.com editor -->
 
 <script type='text/javascript'>
 

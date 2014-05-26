@@ -3,9 +3,7 @@ package com.ads.controller;
 import com.ads.domain.Contact;
 import com.ads.domain.Role;
 import com.ads.domain.User;
-import com.ads.repository.ContactRepository;
-import com.ads.repository.RoleRepository;
-import com.ads.repository.UserRepository;
+import com.ads.repository.*;
 import com.ads.utils.PasswordUtil;
 import com.ads.utils.RegisterPlaceholder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +20,13 @@ import java.security.NoSuchAlgorithmException;
 public class RegisterController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDAO userRepository;
 
     @Autowired
-    private ContactRepository contactRepository;
+    private ContactDAO contactRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private RoleDAO roleRepository;
 
     @RequestMapping(value = "/register")
     public String showRegisterForm(ModelMap model) {

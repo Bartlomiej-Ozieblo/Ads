@@ -4,36 +4,40 @@ import com.ads.domain.Ad;
 import com.ads.domain.Category;
 import com.ads.domain.Role;
 import com.ads.domain.User;
-import com.ads.repository.AdRepository;
-import com.ads.repository.CategoryRepository;
-import com.ads.repository.ContactRepository;
-import com.ads.repository.UserRepository;
+import com.ads.repository.AdDAO;
+import com.ads.repository.CategoryDAO;
+import com.ads.repository.ContactDAO;
+import com.ads.repository.UserDAO;
 import com.ads.utils.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Controller
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDAO userRepository;
 
     @Autowired
-    private AdRepository adRepository;
+    private AdDAO adRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryDAO categoryRepository;
 
     @Autowired
-    private ContactRepository contactRepository;
+    private ContactDAO contactRepository;
 
     @RequestMapping(value = "/user")
     public String userAdsMediator(ModelMap modelMap) {
@@ -67,17 +71,17 @@ public class UserController {
         return "addAd";
     }
 
-    @RequestMapping(value = "/user/ad/edit/{id}")
-    public String showEditAdForm(@PathVariable("id") Integer id, ModelMap model) {
-        Ad ad = adRepository.findOne(id);
-
+    @RequestMapping(value = "/user/ad/edit/id/{id}")
+    public String showEditAdForm(@PathVariable("id") Integer id, ModelMap modelMap) {
         if (isAdmin()) {
-            model.addAttribute("admin", true);
+            modelMap.addAttribute("admin", true);
         }
 
-        model.addAttribute("ad_entity", ad);
-        model.addAttribute("categories", categoryRepository.findAll());
-        model.addAttribute("edit", true);
+        Ad ad = adRepository.findOne(id);
+        List<Category> categories = categoryRepository.findAll();
+        modelMap.addAttribute("categories", categories);
+        modelMap.addAttribute("ad_entity", ad);
+        modelMap.addAttribute("edit", true);
 
         return "addAd";
     }

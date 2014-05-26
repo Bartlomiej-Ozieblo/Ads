@@ -8,8 +8,9 @@
     <title>Ads</title>
     <meta name="generator" content="Bootply"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="../../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js" ></script>
+    <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+    <script type="text/javascript"
+            src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 
     <style type="text/css">
         .starter-template {
@@ -124,6 +125,7 @@
                 <form class="form-signin" role="form">
                     <div class="form-center">
                         <h1 class="form-signin-heading">Register</h1> <br/>
+
                         <form>
                             <div class="form-group">
                                 <label for="disableLogin">Login</label>
@@ -135,11 +137,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="disablePassword">Password</label>
-                                <input type="password" class="form-control" id="disablePassword" placeholder="Password" disabled>
+                                <input type="password" class="form-control" id="disablePassword" placeholder="Password"
+                                       disabled>
                             </div>
                             <div class="form-group">
                                 <label for="disableRpPassword">Repeat password</label>
-                                <input type="password" class="form-control" id="disableRpPassword" placeholder="Repeat password" disabled>
+                                <input type="password" class="form-control" id="disableRpPassword"
+                                       placeholder="Repeat password" disabled>
                             </div>
                             <button class="btn btn-primary disabled" type="submit">Register now</button>
                         </form>
@@ -166,25 +170,31 @@
                         </c:when>
                     </c:choose>
                 </c:if>
-                <form:form class="form-signin" role="form" commandName="register-placeholder" method="post" action="register/now">
+                <form:form class="form-signin" role="form" commandName="register-placeholder" method="post"
+                           action="register/now">
                     <div class="form-center">
                         <h1 class="form-signin-heading">Register</h1> <br/>
+
                         <form>
                             <div class="form-group">
                                 <form:label for="inputLogin" path="user.userName">Login</form:label>
-                                <form:input type="text" class="form-control" id="inputLogin" placeholder="Login" path="user.userName" />
+                                <form:input type="text" class="form-control" id="inputLogin" placeholder="Login"
+                                            path="user.userName"/>
                             </div>
                             <div class="form-group">
                                 <form:label for="inputEmail" path="user.contact.email">Email</form:label>
-                                <form:input type="email" class="form-control" id="inputEmail" placeholder="Email" path="user.contact.email" />
+                                <form:input type="email" class="form-control" id="inputEmail" placeholder="Email"
+                                            path="user.contact.email"/>
                             </div>
                             <div class="form-group">
                                 <form:label for="inputPassword" path="user.userPassword">Password</form:label>
-                                <form:input type="password" class="form-control" id="inputPassword" placeholder="Password" path="user.userPassword"/>
+                                <form:input type="password" class="form-control" id="inputPassword"
+                                            placeholder="Password" path="user.userPassword"/>
                             </div>
                             <div class="form-group">
                                 <form:label for="inputRepeatPassword" path="repeatPassword">Repeat password</form:label>
-                                <form:input type="password" class="form-control" id="inputRepeatPassword" placeholder="Repeat password" path="repeatPassword" />
+                                <form:input type="password" class="form-control" id="inputRepeatPassword"
+                                            placeholder="Repeat password" path="repeatPassword"/>
                             </div>
                             <button class="btn btn-primary" type="submit">Register now</button>
                         </form>
@@ -196,9 +206,7 @@
     </div>
     <!-- /Main -->
 
-    <%--<footer class="text-center">Authors: Bartłomiej Oziębło, Matuesz Mularski</footer>--%>
-
-    <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/jquery.min.js" type="text/javascript"></script>
 </div>
 </body>
 </html>

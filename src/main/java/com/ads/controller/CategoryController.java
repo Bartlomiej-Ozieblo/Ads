@@ -2,8 +2,8 @@ package com.ads.controller;
 
 import com.ads.domain.Ad;
 import com.ads.domain.Category;
-import com.ads.repository.AdRepository;
-import com.ads.repository.CategoryRepository;
+import com.ads.repository.AdDAO;
+import com.ads.repository.CategoryDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,10 +19,10 @@ import java.util.List;
 public class CategoryController {
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryDAO categoryRepository;
 
     @Autowired
-    private AdRepository adRepository;
+    private AdDAO adRepository;
 
     @RequestMapping(value = "/")
     public String showAllCategories(ModelMap model) {
@@ -54,7 +54,8 @@ public class CategoryController {
         }
 
         adRepository.delete(ads);
-        categoryRepository.delete(categoryId);
+        Category category = categoryRepository.findOne(categoryId);
+        categoryRepository.delete(category);
 
         return "redirect:/admin/categories";
     }

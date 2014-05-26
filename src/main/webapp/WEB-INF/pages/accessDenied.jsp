@@ -5,9 +5,9 @@
     <title>Access denied</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap-theme.min.css" />
+    <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <style type="text/css">
@@ -29,7 +29,7 @@
         margin: 0 auto;
         width: 100%;
         min-height: 100%;
-        background-color: #110022;
+        background: radial-gradient(circle, #6C8CD5 70%, #4671D5);
         color: #eee;
         overflow: hidden;
     }
@@ -43,6 +43,7 @@
         margin-top: 20%;
     }
 
+
 </style>
 <body>
 
@@ -55,11 +56,12 @@
             <h1>ACCES DENIED</h1>
 
             <p class="lead">You don't have permission to access that site.</p>
+            <p class="lead"><a href="/">Back to home page</a></p>
         </div>
     </div>
 </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jquery.min.js" type="text/javascript"></script>
 </body>
 
 </html>

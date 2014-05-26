@@ -8,8 +8,8 @@
     <title>Ads</title>
     <meta name="generator" content="Bootply"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="../../resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <script type="text/javascript" src="../../resources/bootstrap/js/bootstrap.min.js" ></script>
+    <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js" ></script>
 
     <!-- CSS code from Bootply.com editor -->
 
@@ -113,6 +113,9 @@
         <c:if test="${not empty param.register and param.register == true}">
             <div class="alert alert-success">You account has been created. Thank you!</div>
         </c:if>
+        <c:if test="${not empty param.login and param.login == false}">
+            <div class="alert alert-danger">Login failed. Username or/and password doesn't match.</div>
+        </c:if>
     </div>
     <div class="row">
         <c:if test="${empty pageContext.request.userPrincipal.name}">
@@ -142,10 +145,7 @@
         </c:forEach>
     </div>
 </div>
-<!-- /Main -->
 
-<%--<footer class="text-center">Authors: Bartłomiej Oziębło, Matuesz Mularski</footer>--%>
-
-<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jquery.min.js" type="text/javascript"></script>
 </body>
 </html>

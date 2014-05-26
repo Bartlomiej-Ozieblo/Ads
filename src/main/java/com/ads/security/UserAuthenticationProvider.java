@@ -1,7 +1,7 @@
 package com.ads.security;
 
 import com.ads.domain.Role;
-import com.ads.repository.UserRepository;
+import com.ads.repository.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,7 +21,7 @@ import java.util.List;
 public class UserAuthenticationProvider implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDAO userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

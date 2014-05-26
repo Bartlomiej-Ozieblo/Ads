@@ -9,7 +9,7 @@
     <title>Ads</title>
     <meta name="generator" content="Bootply"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <style type="text/css">
         /*
 * Style tweaks
@@ -96,7 +96,6 @@
     </style>
 </head>
 
-<!-- HTML code from Bootply.com editor -->
 
 <body>
 
@@ -284,10 +283,9 @@
 </div>
 <!--/.container-->
 
-<script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type='text/javascript' src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js" ></script>
 
-<!-- JavaScript jQuery code from Bootply.com editor -->
 
 <script type='text/javascript'>
 

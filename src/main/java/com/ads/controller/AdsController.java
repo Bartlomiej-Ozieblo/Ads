@@ -4,9 +4,7 @@ import com.ads.domain.Ad;
 import com.ads.domain.Category;
 import com.ads.domain.Role;
 import com.ads.domain.User;
-import com.ads.repository.AdRepository;
-import com.ads.repository.CategoryRepository;
-import com.ads.repository.UserRepository;
+import com.ads.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
@@ -28,13 +27,13 @@ import java.util.List;
 public class AdsController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDAO userRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryDAO categoryRepository;
 
     @Autowired
-    private AdRepository adRepository;
+    private AdDAO adRepository;
 
     @RequestMapping(value = "/category/{id}")
     public String showAdsFromCategory(@PathVariable("id") Integer id, ModelMap model) {
@@ -183,5 +182,12 @@ public class AdsController {
         }
 
         return false;
+    }
+
+    @RequestMapping(value = "/admin/ad/id/{id}/remove")
+    public String removeAd(@PathVariable("id") Integer adId, HttpServletRequest request) {
+        Ad ad = adRepository.findOne(adId);
+        adRepository.delete(ad);
+        return "redirect:" + request.getHeader("referer");
     }
 }

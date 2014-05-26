@@ -1,6 +1,5 @@
 package com.ads.controller;
 
-import com.ads.domain.Ad;
 import com.ads.domain.Category;
 import com.ads.domain.Role;
 import com.ads.domain.User;
@@ -8,13 +7,10 @@ import com.ads.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,19 +18,19 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserDAO userRepository;
 
     @Autowired
-    private CategoryRepository categoryRepository;
+    private CategoryDAO categoryRepository;
 
     @Autowired
-    private AdRepository adRepository;
+    private AdDAO adRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
+    private RoleDAO roleRepository;
 
     @Autowired
-    private ContactRepository contactRepository;
+    private ContactDAO contactRepository;
 
     @RequestMapping(value = "/admin/users")
     public String showAllUsers(ModelMap model) {
@@ -76,6 +72,11 @@ public class AdminController {
         }
 
         return "adminUser";
+    }
+
+    @RequestMapping(value = "/admin")
+    public String showAllAdMediator() {
+        return "redirect:/admin/ads";
     }
 
     @RequestMapping(value = "/admin/ads")
@@ -121,12 +122,5 @@ public class AdminController {
         modelMap.addAttribute("categoryFilter", true);
 
         return "adminAds";
-    }
-
-
-    @RequestMapping(value = "/admin/ad/id/{id}/remove")
-    public String removeAd(@PathVariable("id") Integer adId, HttpServletRequest request) {
-        adRepository.delete(adId);
-        return "redirect:" + request.getHeader("referer");
     }
 }
