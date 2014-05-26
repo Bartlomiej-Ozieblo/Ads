@@ -89,9 +89,9 @@ public class AdsController {
                             ((org.springframework.security.core.userdetails.User)
                                     SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
 
-                    if (user.getUserName().equals(userName)) {
-                        model.addAttribute("admin", true);
-                    } else if (user.getRole().getId() != Role.ROLE_ADMIN_ID) {
+                    if (user.getRole().getId() == Role.ROLE_ADMIN_ID && !user.getUserName().equals(userName)) {
+                        model.addAttribute("admin", false);
+                    } else if (user.getUserName().equals(userName)) {
                         model.addAttribute("admin", true);
                     } else {
                         model.addAttribute("admin", true);
