@@ -84,9 +84,26 @@ public class AppTests {
     }
 
     @Test
-    public void adminURLTest() throws Exception {
+    public void adminControllerTest() throws Exception {
         this.mockMvc.perform(post("/admin")).andExpect(redirectedUrl("/admin/ads"));
         this.mockMvc.perform(post("/admin/users")).andExpect(status().isOk());
+        this.mockMvc.perform(post("/admin/user/id/32")).andExpect(redirectedUrl("/admin/users"));
+        this.mockMvc.perform(post("/admin/ads/user/32")).andExpect(status().isOk());
+        this.mockMvc.perform(post("/admin/ads/category/8")).andExpect(status().isOk());
+        this.mockMvc.perform(post("/admin/ads/user/32/category/8")).andExpect(status().isOk());
+    }
+
+    @Test
+    public void adsControllerTest() throws Exception {
+        this.mockMvc.perform(post("/category/8")).andExpect(status().isOk());
+        this.mockMvc.perform(post("/ad/1")).andExpect(status().isOk());
+        this.mockMvc.perform(post("/ads/user/1")).andExpect(status().isOk());
+        this.mockMvc.perform(post("/admin/ad/id/1/remove")).andExpect(status().is(302));
+    }
+
+    @Test
+    public void errorHandlerControllerTest() throws Exception {
+        this.mockMvc.perform(post("/denied")).andExpect(status().isOk());
     }
 
     @Test

@@ -17,11 +17,11 @@
 
     h1 {
         font-family: Arial, sans-serif font-size : 80 px;
-        color: #DDCCEE;
+        color: #A63F3A;
     }
 
     .lead {
-        color: #DDCCEE;
+        color: #A63F3A;
     }
 
     /* Custom container */

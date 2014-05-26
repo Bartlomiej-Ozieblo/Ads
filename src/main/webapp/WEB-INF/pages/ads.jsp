@@ -121,7 +121,7 @@
             </c:forEach>
         </c:when>
         <c:otherwise>
-            <div class="alert alert-warning">There aren't any ads marked with this category yet.</div>
+            <div class="alert alert-warning">There aren't any ads here now.</div>
         </c:otherwise>
     </c:choose>
 

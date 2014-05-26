@@ -108,7 +108,7 @@ public class AdsController {
         return "adNotFound";
     }
 
-    @RequestMapping(value = "ads/user/{id}")
+    @RequestMapping(value = "/ads/user/{id}")
     public String showUserAds(@PathVariable("id") Integer id, ModelMap model) {
         User user = userRepository.findOne(id);
 
