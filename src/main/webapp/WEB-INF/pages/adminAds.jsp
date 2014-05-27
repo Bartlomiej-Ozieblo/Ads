@@ -253,7 +253,7 @@
                                         <td>${ad.createDate}</td>
                                         <td>${ad.category.categoryName}</td>
                                         <c:choose>
-                                            <c:when test="${user.role.id == 1}">
+                                            <c:when test="${user.role.id == 1 and pageContext.request.userPrincipal.name != user.userName}">
                                                 <td>
                                                     <a href="#" class="btn-danger btn disabled">DELETE</a>
                                                 </td>
@@ -276,7 +276,7 @@
                                             <td>${ad.createDate}</td>
                                             <td>${ad.category.categoryName}</td>
                                             <c:choose>
-                                                <c:when test="${user.role.id == 1}">
+                                                <c:when test="${user.role.id == 1 and pageContext.request.userPrincipal.name != user.userName}">
                                                     <td>
                                                         <a href="#" class="btn-danger btn disabled">DELETE</a>
                                                     </td>
