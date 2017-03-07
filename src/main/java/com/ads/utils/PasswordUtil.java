@@ -34,6 +34,6 @@ public class PasswordUtil {
     }
 
     public void foo() {
-        System.out.println("doing nothing");
+        System.out.println("doing absolutely nothing");
     }
 }
