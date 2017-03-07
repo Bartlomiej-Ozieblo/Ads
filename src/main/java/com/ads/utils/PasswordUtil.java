@@ -32,4 +32,8 @@ public class PasswordUtil {
 
         return stringBuffer.toString();
     }
+
+    public void foo() {
+        System.out.println("doing nothing");
+    }
 }
