@@ -36,4 +36,8 @@ public class PasswordUtil {
     public void foo() {
         System.out.println("doing absolutely nothing");
     }
+
+    public void foo1337() {
+        System.out.println("absolutely leet");
+    }
 }
